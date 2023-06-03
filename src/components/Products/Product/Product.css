@@ -13,3 +13,15 @@
   scale: 1.1;
   transition: scale .3s linear;
 }
+
+.Product img {
+  width: 100px;
+  height: 100px;
+}
+
+.Product div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}

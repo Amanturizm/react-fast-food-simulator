@@ -1,9 +1,32 @@
 .Orders {
-  height: 340px;
+  width: 400px;
+  height: 420px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 20px;
   border: 2px solid #222;
   border-radius: 15px;
+  position: relative;
+}
+
+.Orders-label {
+  position: absolute;
+  top: -10px;
+  background-color: #fff;
+}
+
+.Orders-items {
+  width: 100%;
+  overflow: hidden;
+}
+
+.Total-price {
+  position: absolute;
+  bottom: 20px;
+}
+
+.Total-price span {
+  margin: 0 5px;
+  font-weight: bold;
 }

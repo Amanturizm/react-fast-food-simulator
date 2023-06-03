@@ -12,6 +12,7 @@ interface IProps {
 const Products: React.FC<IProps> = ({ PRODUCTS , addProductHandler}) => {
 	return (
 		<div className="Products">
+			<h4 className="Products-menu">Menu: </h4>
 			{
 				PRODUCTS.map((PRODUCT: IPRODUCT, index: number) => {
 					return (

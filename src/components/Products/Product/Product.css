@@ -1,12 +1,14 @@
 .Product {
-  width: 250px;
-  height: 100px;
+  min-width: 250px;
+  min-height: 100px;
   display: flex;
+  gap: 5px;
   border: 2px solid #222;
   border-radius: 15px;
   cursor: pointer;
   scale: 1;
   transition: scale .3s linear;
+  padding: 5px;
 }
 
 .Product:hover {

@@ -4,13 +4,16 @@
   align-items: center;
 }
 
+
 .Order h4 {
   width: 200px;
 }
 
+
 .Order span {
   width: 30px;
 }
+
 
 .Order button {
   background-color: #fff;
@@ -21,6 +24,17 @@
   margin-left: 10px;
 }
 
+
 .Order button:hover {
   scale: 1.2;
 }
+
+
+/*@keyframes translateOrder {*/
+/*  0% {*/
+/*    transform: translateX(0);*/
+/*  }*/
+/*  100% {*/
+/*    transform: translateX(-100%);*/
+/*  }*/
+/*}*/

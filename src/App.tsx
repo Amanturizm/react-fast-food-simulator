@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import Orders from "./components/Orders/Orders";
 import Products from "./components/Products/Products";
-import burgerImage from './assets/hamburger.webp';
+import hamburgerImage from './assets/hamburger.png';
+import cheeseburgerImage from './assets/cheeseburger.webp';
 import coffeeImage from './assets/coffee.webp';
+import friesImage from './assets/fries.png';
+import teaImage from './assets/tea.png';
+import colaImage from './assets/cola.png';
 import './App.css';
 
 export interface IPRODUCT {
@@ -12,12 +16,12 @@ export interface IPRODUCT {
 }
 
 const PRODUCTS: IPRODUCT[] = [
-	{ name: 'Hamburger', price: 80, imgURL: burgerImage },
+	{ name: 'Hamburger', price: 80, imgURL: hamburgerImage },
 	{ name: 'Coffee', price: 70, imgURL: coffeeImage },
-	{ name: 'Cheeseburger', price: 90, imgURL: burgerImage },
-	{ name: 'Tea', price: 50, imgURL: burgerImage },
-	{ name: 'Fries', price: 45, imgURL: burgerImage },
-	{ name: 'Cola', price: 40, imgURL: burgerImage }
+	{ name: 'Cheeseburger', price: 90, imgURL: cheeseburgerImage },
+	{ name: 'Tea', price: 50, imgURL: teaImage },
+	{ name: 'Fries', price: 45, imgURL: friesImage },
+	{ name: 'Cola', price: 40, imgURL: colaImage }
 ];
 
 export interface IProduct {
@@ -37,19 +41,41 @@ const App = () => {
 		]
 	);
 
+	const [totalPrice, setTotalPrice] = useState<number>(0);
+
+	const totalPricing = (productsCopy: IProduct[]): void => {
+		setTotalPrice(() => {
+			return productsCopy.reduce((acc: number, product: IProduct, index: number) => {
+				return acc + (product.count * PRODUCTS[index].price);
+			}, 0);
+		});
+	};
+
 	const addProduct = (index: number): void => {
 		setProducts((prevState: IProduct[]) => {
-			const productsCopy: IProduct[] = [ ...prevState ];
+			const productsCopy: IProduct[] = [...prevState];
 			const productCopy: IProduct = { ...productsCopy[index] };
 			productCopy.count++;
 			productsCopy[index] = productCopy;
+			totalPricing(productsCopy);
+			return productsCopy;
+		});
+	};
+
+	const removeProductOrder = (index: number): void => {
+		setProducts(prevState => {
+			const productsCopy: IProduct[] = [...prevState];
+			const productCopy: IProduct = { ...productsCopy[index] };
+			productCopy.count = 0;
+			productsCopy[index] = productCopy;
+			totalPricing(productsCopy);
 			return productsCopy;
 		});
 	};
 
 	return (
 		<div className="App">
-			<Orders products={products} PRODUCTS={PRODUCTS} />
+			<Orders products={products} PRODUCTS={PRODUCTS} price={totalPrice} removeClickHandler={removeProductOrder}/>
 			<Products PRODUCTS={PRODUCTS} addProductHandler={addProduct}/>
 		</div>
 	);
